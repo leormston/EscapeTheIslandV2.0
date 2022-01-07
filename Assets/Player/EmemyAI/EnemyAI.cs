@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer;
     public GameObject ground;
     public float health;
+    public Animator animator;
 
     //Patroling
     public Vector3 walkPoint;
@@ -33,6 +34,7 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         walkPointSet = false;
+        animator = GetComponentInChildren<Animator>();
 
         
     }
@@ -51,6 +53,8 @@ public class EnemyAI : MonoBehaviour
 
     private void Patroling()
     {
+        animator.SetBool("Walking", true);
+        GetComponent<NavMeshAgent>().speed = 1.5f;
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
@@ -72,17 +76,20 @@ public class EnemyAI : MonoBehaviour
 
         walkPointSet = true;
     }
-
+ 
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
+        animator.SetBool("Walking", false);
+        GetComponent<NavMeshAgent>().speed = 6.0f;
     }
 
     private void AttackPlayer()
     {
         //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
-
+        animator.SetBool("Walking", false);
+        GetComponent<NavMeshAgent>().speed = 6.0f;
         transform.LookAt(player);
 
         if (!alreadyAttacked)
@@ -96,6 +103,7 @@ public class EnemyAI : MonoBehaviour
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
+        
     }
     private void ResetAttack()
     {
