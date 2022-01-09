@@ -18,7 +18,7 @@ public class InputManager : MonoBehaviour
     public Text healthText;
     public float maxHealth = 150;
     public HealthBar healthBar;
-    
+    public AudioSource hurtAudio; 
     void start(){
         health = maxHealth;
         healthBar.SetMaxHealth(health);
@@ -33,6 +33,7 @@ public class InputManager : MonoBehaviour
 
         groundMovement.MouseX.performed += ctx => mouseInput.x = ctx.ReadValue<float>();
         groundMovement.MouseY.performed += ctx => mouseInput.y = ctx.ReadValue<float>();
+        hurtAudio = gameObject.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -58,9 +59,9 @@ public class InputManager : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-
+        hurtAudio.Play();
         healthText.text = "Health: "+ health.ToString();
-
+        
         healthBar.SetHealth(health);
 
         //if (health <= 0) Invoke(nameof(DestroyPlayer), 0.5f);

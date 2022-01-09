@@ -9,7 +9,20 @@ public class checkInSight : MonoBehaviour
     RaycastHit hit;
 
     public GameObject wood;
-
+    public AudioSource woodAudio;
+    public AudioSource stoneAudio;
+    public AudioSource berryAudio;
+    public AudioSource treeAudio;
+    public AudioSource scrapAudio;
+    private void Start()
+    {
+        var aSources = GetComponents<AudioSource>();
+        woodAudio = aSources[1];
+        stoneAudio = aSources[2]; 
+        berryAudio = aSources[3];
+        treeAudio = aSources[4];
+        scrapAudio = aSources[5];
+    }
 
     private void Update()
     {
@@ -42,26 +55,26 @@ public class checkInSight : MonoBehaviour
                     if (hit.collider.name.Contains("berries"))
                     {
                         Destroy(hit.transform.gameObject);
-
+                        berryAudio.Play();
                         //hunger increase
                         hungerScript.hungerIncrease();
                     }
                     else if (hit.collider.name.Contains("wood"))
                     {
                         Destroy(hit.transform.gameObject);
-
+                        woodAudio.Play();
                         resourceScript.wood += 1;
                     }
                     else if (hit.collider.name.Contains("stone"))
                     {
                         Destroy(hit.transform.gameObject);
-
+                        stoneAudio.Play();
                         resourceScript.stone += 1;
                     }
                     else if (hit.collider.name.Contains("scrap"))
                     {
                         Destroy(hit.transform.gameObject);
-
+                        scrapAudio.Play();
                         resourceScript.scrap += 1;
                     }
                     else if (hit.collider.name.Contains("Ship"))
@@ -76,7 +89,9 @@ public class checkInSight : MonoBehaviour
 
                     else if (hit.collider.name.Contains("BanyanTree") && equipScript.axeOn)
                     {
-                        GameObject.Instantiate(wood, hit.transform.gameObject.transform.position, hit.transform.gameObject.transform.rotation);
+                        Vector3 pos = new Vector3(hit.transform.gameObject.transform.position.x, hit.transform.gameObject.transform.position.y + 20.0f,hit.transform.gameObject.transform.position.z);
+                        GameObject.Instantiate(wood, pos, hit.transform.gameObject.transform.rotation);
+                        treeAudio.Play();
                         Destroy(hit.transform.gameObject);
                     }
 
