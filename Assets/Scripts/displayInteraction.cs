@@ -36,7 +36,7 @@ public class displayInteraction : MonoBehaviour
 
         if (playerScript.uiOn == false)
         {
-            if (Physics.Raycast(transform.position, fwd, out hit))
+            if (Physics.Raycast(transform.position, fwd, out hit, 4))
             {
                 if (hit.collider.name.Contains("berries"))
                 {
@@ -74,14 +74,15 @@ public class displayInteraction : MonoBehaviour
                         dialogueScript.startDialogue(event2);
                     }
                 }
-                else if (hit.collider.name.Contains("Enemy") && firstTimeEnemy) {
+                else if (hit.collider.name.Contains("Zombie") && firstTimeEnemy) {
                     dialogueScript.startDialogue(event7);
                     firstTimeEnemy = false;
                 }
-                else
-                {
-                    interaction.SetActive(false);
-                }
+                
+            }
+            else
+            {
+                interaction.SetActive(false);
             }
         }
 

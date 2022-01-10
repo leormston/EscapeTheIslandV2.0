@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{51F94C6D-CB61-EB10-9FD3-3A8C85CB8192}</ProjectGuid>
+    <ProjectGuid>{9D1464DE-0C58-745D-BFFC-824C0122035B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>NavMeshComponentsEditor</AssemblyName>
@@ -703,7 +703,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="NavMeshComponents.csproj">
-      <Project>{73B24702-9955-6FD3-C818-40C896193C4B}</Project>
+      <Project>{2BF9FF8D-6E8A-EDCD-5CF7-818C88584D6E}</Project>
       <Name>NavMeshComponents</Name>
     </ProjectReference>
   </ItemGroup>

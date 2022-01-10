@@ -40,6 +40,7 @@ public class DialogueSystem : MonoBehaviour
 
         for (int i = 0; i < dialogueobject.Dialogue.Length; i++) {
             name.text = dialogueobject.Potrait[i];
+            //show fairy art if it is said by fairy
             if (dialogueobject.Potrait[i] == "Fairy")
             {
                 fairy.SetActive(true);
@@ -47,15 +48,32 @@ public class DialogueSystem : MonoBehaviour
             else {
                 fairy.SetActive(false);
             }
+            if (Input.GetKey(KeyCode.P))
+            {
+                Debug.Log("it is in this if");
+                turnOffDialogue();
+                yield break;
+            }
+            else {
+                Debug.Log("if is still going");
+            }
+
+            //type writer effect for the current line
             yield return typewriter.Run(dialogueobject.Dialogue[i], content);
-            yield return new WaitUntil(() => Keyboard.current.enterKey.wasPressedThisFrame);
+            //yield return new WaitUntil(() => Keyboard.current.enterKey.wasPressedThisFrame);
+            yield return new WaitForSeconds(1);
+            
         }
+        turnOffDialogue();
 
         /*foreach (string dialogue in dialogueobject.Dialogue) {
 
             yield return typewriter.Run(dialogue, content);
             yield return new WaitUntil(() => Keyboard.current.enterKey.wasPressedThisFrame);
         }*/
+    }
+
+    private void turnOffDialogue() {
         dialogueWindow.SetActive(false);
         GameObject PlayerController = GameObject.Find("Player");
         Movement playerScript = PlayerController.GetComponent<Movement>();

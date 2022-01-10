@@ -46,7 +46,7 @@ public class checkInSight : MonoBehaviour
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
         if (playerScript.uiOn == false)
         {
-            if (Physics.Raycast(transform.position, fwd, out hit))
+            if (Physics.Raycast(transform.position, fwd, out hit, 4))
             {
                 //Debug.Log("hit object" + hit.collider.name);
 
