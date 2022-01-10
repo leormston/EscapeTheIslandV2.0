@@ -21,7 +21,7 @@ public class Movement : MonoBehaviour
     public void Update ()
     {
         //physics.checksphere creates a sphere and sees if it intersects with anything
-        // isGrounded = Physics.Raycast(transform.position, -transform.up, 2f, Ground);
+        
         //     walkPointSet = true;
         // isGrounded = Physics.CheckSphere(transform.position, 2f);
         // if(isGrounded)
@@ -32,22 +32,24 @@ public class Movement : MonoBehaviour
         //Jump v  = sqrt(-2 * jumpheight * gravity)
         
         //if ui is on nothing can move
-        if (uiOn == false) {
-            if (jump)
+        
+        // if (uiOn == false) {
+        isGrounded = Physics.Raycast(transform.position, -transform.up, 2f, Ground);
+        if (jump)
+        {
+            if(isGrounded)
             {
-                // if(isGrounded)
-                // {
-                verticalVelocity.y = Mathf.Sqrt(-2f * jumpHeight * gravity);
-                // }
-
-                jump = false;
+            verticalVelocity.y = Mathf.Sqrt(-2f * jumpHeight * gravity);
             }
-            Vector3 horizontalVelocity = (transform.right * horizontalInput.x + transform.forward * horizontalInput.y) * speed;
-            controller.Move(horizontalVelocity * Time.deltaTime);
 
-            verticalVelocity.y += gravity * Time.deltaTime;
-            controller.Move(verticalVelocity * Time.deltaTime);
+            jump = false;
         }
+        Vector3 horizontalVelocity = (transform.right * horizontalInput.x + transform.forward * horizontalInput.y) * speed;
+        controller.Move(horizontalVelocity * Time.deltaTime);
+
+        verticalVelocity.y += gravity * Time.deltaTime;
+        controller.Move(verticalVelocity * Time.deltaTime);
+        // }
 
         //if i is pressed then open inventory, lock all movement
         if (Keyboard.current.iKey.wasPressedThisFrame)

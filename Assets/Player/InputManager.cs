@@ -12,7 +12,7 @@ public class InputManager : MonoBehaviour
     PlayerControls controls;
     PlayerControls.GroundMovementActions groundMovement;
     [SerializeField] float health;
-    Vector2 horizontalInput;
+    Vector2 horizontalInput; 
     Vector2 mouseInput;
     public GameObject projectile;
     public Text healthText;

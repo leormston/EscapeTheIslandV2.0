@@ -35,7 +35,8 @@ public class Crafting : MonoBehaviour
         missionList.Add(hull);
         CraftableItem engine = new CraftableItem("Engine", 5, 5, 20);
         missionList.Add(engine);
-
+        CraftableItem mast = new CraftableItem("Mast", 5, 5, 20);
+        missionList.Add(mast);
         close.onClick.AddListener(closeCrafting);
         craftMission.onClick.AddListener(checkRequirement);
         craftAxe.onClick.AddListener(checkStoneAxeRequirement);
@@ -101,8 +102,10 @@ public class Crafting : MonoBehaviour
                 //Debug.Log(missionList[current].scrapRequired);
                 current++;
                 Debug.Log("the current node is" + current);
-                displayRequirement();
+                displayRequirement(); 
+                
             }
+            
         }
         
     }

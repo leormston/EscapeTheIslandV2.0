@@ -38,15 +38,14 @@ public class MissionBoard : MonoBehaviour
 
         GameObject gameManager = GameObject.Find("GameManager");
         DialogueSystem dialogueScript = gameManager.GetComponent<DialogueSystem>();
-
-        if (craftingScript.current == 1 && firstHull == false)
+        if (craftingScript.current == 1 && firstHull == false )
         {
             craftingScript.closeCrafting();
             dialogueScript.startDialogue(event5);
             firstHull = true;
         }
 
-        if (craftingScript.current >= craftingScript.missionList.Count && firstEngine == false)
+        else if (craftingScript.current >= craftingScript.missionList.Count && firstEngine == true)
         {
             craftingScript.closeCrafting();
             dialogueScript.startDialogue(event6);
@@ -57,6 +56,11 @@ public class MissionBoard : MonoBehaviour
         else
         {
             missionContent.text = "Repair " + craftingScript.missionList[craftingScript.current].itemName;
+            // craftingScript.closeCrafting();
+            // dialogueScript.startDialogue(event6);
+            // missionContent.text = "Return to the ship to escape";
+            // escape = true;
+            firstEngine = true;
         }
 
 

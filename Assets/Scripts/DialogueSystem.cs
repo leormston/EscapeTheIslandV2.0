@@ -29,7 +29,7 @@ public class DialogueSystem : MonoBehaviour
     public void startDialogue(DialogueObject dialogueObject) {
         GameObject PlayerController = GameObject.Find("Player");
         Movement playerScript = PlayerController.GetComponent<Movement>();
-        playerScript.uiOn = true;
+        // playerScript.uiOn = true;
         StartCoroutine(NextDialogue(dialogueObject));
         //show window
         dialogueWindow.SetActive(true);
