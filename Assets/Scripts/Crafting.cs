@@ -33,10 +33,11 @@ public class Crafting : MonoBehaviour
         //create the mission item list
         CraftableItem hull = new CraftableItem("Hull", 3, 0, 0);
         missionList.Add(hull);
-        CraftableItem engine = new CraftableItem("Engine", 5, 5, 20);
-        missionList.Add(engine);
         CraftableItem mast = new CraftableItem("Mast", 5, 5, 20);
         missionList.Add(mast);
+        CraftableItem engine = new CraftableItem("Engine", 5, 5, 20);
+        missionList.Add(engine);
+        Debug.Log("the length is " + missionList.Count);
         close.onClick.AddListener(closeCrafting);
         craftMission.onClick.AddListener(checkRequirement);
         craftAxe.onClick.AddListener(checkStoneAxeRequirement);
@@ -92,7 +93,7 @@ public class Crafting : MonoBehaviour
         GameObject resource = GameObject.Find("GameManager");
         ResourceCounter resourceScript = resource.GetComponent<ResourceCounter>();
         //check if condition met to craft
-        if (current < missionList.Count) {
+        if (current <= missionList.Count) {
             if (missionList[current].woodRequired <= resourceScript.wood && missionList[current].stoneRequired <= resourceScript.stone && missionList[current].scrapRequired <= resourceScript.scrap)
             {
 

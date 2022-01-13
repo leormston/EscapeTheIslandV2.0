@@ -45,7 +45,7 @@ public class MissionBoard : MonoBehaviour
             firstHull = true;
         }
 
-        else if (craftingScript.current >= craftingScript.missionList.Count && firstEngine == true)
+        else if (craftingScript.current == craftingScript.missionList.Count && firstEngine == false)
         {
             craftingScript.closeCrafting();
             dialogueScript.startDialogue(event6);
@@ -53,15 +53,21 @@ public class MissionBoard : MonoBehaviour
             escape = true;
             firstEngine = true;
         }
-        else
-        {
+
+        if (craftingScript.current < craftingScript.missionList.Count) {
             missionContent.text = "Repair " + craftingScript.missionList[craftingScript.current].itemName;
-            // craftingScript.closeCrafting();
-            // dialogueScript.startDialogue(event6);
-            // missionContent.text = "Return to the ship to escape";
-            // escape = true;
-            firstEngine = true;
         }
+
+
+        //missionContent.text = "Repair " + craftingScript.missionList[craftingScript.current].itemName;
+        // craftingScript.closeCrafting();
+        // dialogueScript.startDialogue(event6);
+        // missionContent.text = "Return to the ship to escape";
+        // escape = true;
+        //firstEngine = true;
+        
+
+       
 
 
     }

@@ -6,6 +6,8 @@ public class MiniMapOn : MonoBehaviour
 {
     public GameObject map;
 
+    private bool mapOn = false;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.M)) {
@@ -14,7 +16,7 @@ public class MiniMapOn : MonoBehaviour
     }
     void minimapOn()
     {
-        GameObject PlayerController = GameObject.Find("Player");
+        /*GameObject PlayerController = GameObject.Find("Player");
         Movement playerScript = PlayerController.GetComponent<Movement>();
         if (playerScript.uiOn == true)
         {
@@ -24,7 +26,17 @@ public class MiniMapOn : MonoBehaviour
         else {
             map.SetActive(true);
             playerScript.uiOn = true;
+        }*/
+        if (mapOn)
+        {
+            mapOn = false;
+            map.SetActive(false);
         }
+        else {
+            mapOn = true;
+            map.SetActive(true);
+        }
+
     }    
 
 }

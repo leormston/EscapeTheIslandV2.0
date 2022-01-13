@@ -67,9 +67,11 @@ public class EquipItem : MonoBehaviour
         GameObject sling = Instantiate(slingShot, rightHandPos.position, rightHandPos.rotation);
         sling.transform.parent = player.transform;
         slingerOn = true;
-        if (firstSlinger == false)
+        //Debug.Log("first slinger before if");
+        //Debug.Log("is it true " + firstSlinger);
+        if (firstSlinger == true)
         {
-            
+            Debug.Log("first slinger");
             GameObject gameManager = GameObject.Find("GameManager");
             displayTutorials tutorialScript = gameManager.GetComponent<displayTutorials>();
             DialogueSystem dialogueScript = gameManager.GetComponent<DialogueSystem>();
@@ -77,7 +79,7 @@ public class EquipItem : MonoBehaviour
             resourceScript.closeInventory();
             dialogueScript.startDialogue(event8);
             //tutorialScript.displaySlingerTutorial();
-            firstSlinger = true;
+            firstSlinger = false;
         }
     }
 }
