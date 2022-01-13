@@ -9,8 +9,12 @@ public class MissionBoard : MonoBehaviour
     public bool escape = false;
     private bool firstHull = false;
     private bool firstEngine = false;
+    private bool firstMast = false;
+    private bool firstStatue = false;
     public DialogueObject event5;
     public DialogueObject event6;
+    public DialogueObject event9;
+    public DialogueObject event10;
 
     // Start is called before the first frame update
     void Start()
@@ -41,8 +45,22 @@ public class MissionBoard : MonoBehaviour
         if (craftingScript.current == 1 && firstHull == false )
         {
             craftingScript.closeCrafting();
-            dialogueScript.startDialogue(event5);
+            dialogueScript.startDialogue(event9);
             firstHull = true;
+        }
+
+        if (craftingScript.current == 2 && firstMast == false)
+        {
+            craftingScript.closeCrafting();
+            dialogueScript.startDialogue(event10);
+            firstMast = true;
+        }
+
+        if (craftingScript.current == 3 && firstStatue == false)
+        {
+            craftingScript.closeCrafting();
+            dialogueScript.startDialogue(event5);
+            firstStatue = true;
         }
 
         else if (craftingScript.current == craftingScript.missionList.Count && firstEngine == false)

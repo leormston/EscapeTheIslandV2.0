@@ -15,6 +15,8 @@ MonoBehaviour:
   dialogue:
   - I am getting hungry.
   - See if I can find some food to eat?
+  - (Berries can be found in the bushes)
   potrait:
+  - Traveler
   - Traveler
   - Traveler

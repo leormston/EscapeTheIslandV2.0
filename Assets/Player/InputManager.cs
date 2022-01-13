@@ -48,7 +48,7 @@ public class InputManager : MonoBehaviour
         //get equipItem to see if slinger is on
         
         if (equipScript.slingerOn   == true) {
-            if (Keyboard.current.qKey.wasPressedThisFrame)
+            if (Mouse.current.rightButton.wasPressedThisFrame)
             {
                 Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
                 rb.AddForce(transform.forward * 16f, ForceMode.Impulse);
@@ -66,8 +66,8 @@ public class InputManager : MonoBehaviour
 
         //if (health <= 0) Invoke(nameof(DestroyPlayer), 0.5f);
         if (health <= 0) {
-            GameObject gameManager = GameObject.Find("GameManager");
-            GameOver gameOverScript = gameManager.GetComponent<GameOver>();
+            GameObject gameOver = GameObject.Find("GameManager");
+            GameOver gameOverScript = gameOver.GetComponent<GameOver>();
             gameOverScript.displayGameOver(1);
         }
     }

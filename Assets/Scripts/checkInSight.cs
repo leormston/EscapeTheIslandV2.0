@@ -49,7 +49,15 @@ public class checkInSight : MonoBehaviour
             if (Physics.Raycast(transform.position, fwd, out hit, 4))
             {
                 //Debug.Log("hit object" + hit.collider.name);
-
+                if (Mouse.current.leftButton.wasPressedThisFrame) {
+                    if (hit.collider.name.Contains("BanyanTree") && equipScript.axeOn)
+                    {
+                        Vector3 pos = new Vector3(hit.transform.gameObject.transform.position.x, hit.transform.gameObject.transform.position.y + 20.0f, hit.transform.gameObject.transform.position.z);
+                        GameObject.Instantiate(wood, pos, hit.transform.gameObject.transform.rotation);
+                        treeAudio.Play();
+                        Destroy(hit.transform.gameObject);
+                    }
+                }
                 if (Keyboard.current.eKey.wasPressedThisFrame)
                 {
                     if (hit.collider.name.Contains("berries"))
@@ -82,17 +90,10 @@ public class checkInSight : MonoBehaviour
                         MissionBoard missionScript = gameManager.GetComponent<MissionBoard>();
                         if (missionScript.escape)
                         {
-                            GameOver gameOverScript = gameManager.GetComponent<GameOver>();
+                            GameObject gameOver = GameObject.Find("GameManager");
+                            GameOver gameOverScript = gameOver.GetComponent<GameOver>();
                             gameOverScript.displayGameOver(3);
                         }
-                    }
-
-                    else if (hit.collider.name.Contains("BanyanTree") && equipScript.axeOn)
-                    {
-                        Vector3 pos = new Vector3(hit.transform.gameObject.transform.position.x, hit.transform.gameObject.transform.position.y + 20.0f,hit.transform.gameObject.transform.position.z);
-                        GameObject.Instantiate(wood, pos, hit.transform.gameObject.transform.rotation);
-                        treeAudio.Play();
-                        Destroy(hit.transform.gameObject);
                     }
 
                 }

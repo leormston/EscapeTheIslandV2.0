@@ -15,7 +15,11 @@ public class hungerReduce : MonoBehaviour
     //the hunger text
     public Text hungerText;
 
-    void start(){
+    //hunger event
+    public DialogueObject event3;
+    //public DialogueObject event9;
+
+    void Start(){
         hunger = maxHunger;
         hungerBar.SetMaxHunger(hunger);
     }
@@ -31,10 +35,22 @@ public class hungerReduce : MonoBehaviour
             //else +5 hunger
             else {
                 hunger += 5;
+                Debug.Log("hunger increased");
             }
+            Debug.Log("hunger increased is " + hunger);
             hungerText.text = "Hunger: " + hunger.ToString();
+            hungerBar.SetHunger(hunger);
+            counter = 0;
         }
         
+    }
+
+    public void hungerDecrease() {
+        Debug.Log("the hunger before is " + hunger);
+        hunger--;
+        hungerText.text = "Hunger: " + hunger.ToString();
+        Debug.Log("the hunger is " + hunger);
+        hungerBar.SetHunger(hunger);
     }
 
     // Update is called once per frame
@@ -48,16 +64,22 @@ public class hungerReduce : MonoBehaviour
             counter++;
             if (counter == 3000)
             {
-                hunger--;
-                hungerText.text = "Hunger: " + hunger.ToString();
-                hungerBar.SetHunger(hunger);
+                hungerDecrease();
                 counter = 0;
             }
         }
         if (hunger == 0) {
-            GameObject gameManager = GameObject.Find("GameManager");
-            GameOver gameOverScript = gameManager.GetComponent<GameOver>();
+            GameObject gameOver = GameObject.Find("GameManager");
+            GameOver gameOverScript = gameOver.GetComponent<GameOver>();
             gameOverScript.displayGameOver(2);
         }
+
+        if (hunger == 50) {
+            GameObject gameManager = GameObject.Find("GameManager");
+            DialogueSystem dialogueScript = gameManager.GetComponent<DialogueSystem>();
+            dialogueScript.startDialogue(event3);
+        }
+
+
     }
 }

@@ -76,8 +76,8 @@ public class playerController : MonoBehaviour
             GetComponent<Rigidbody>().MoveRotation(Quaternion.Euler(0, rotation.x, 0));
         }
 
-        //if i is pressed then open inventory, lock all movement
-        if (Keyboard.current.iKey.wasPressedThisFrame)
+        //if q is pressed then open inventory, lock all movement
+        if (Keyboard.current.qKey.wasPressedThisFrame)
         {
             Debug.Log(uiOn);
             uiOn = true;
@@ -87,7 +87,8 @@ public class playerController : MonoBehaviour
 
             resourceScript.openInventory();
         }
-        else if (Keyboard.current.jKey.wasPressedThisFrame) {
+        //if r is pressed then open crafting menu
+        else if (Keyboard.current.rKey.wasPressedThisFrame) {
             uiOn = true;
             //reference the crafting menu
             GameObject craft = GameObject.Find("GameManager");

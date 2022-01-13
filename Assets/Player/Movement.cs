@@ -51,8 +51,8 @@ public class Movement : MonoBehaviour
         controller.Move(verticalVelocity * Time.deltaTime);
         // }
 
-        //if i is pressed then open inventory, lock all movement
-        if (Keyboard.current.iKey.wasPressedThisFrame)
+        //if q is pressed then open inventory, lock all movement
+        if (Keyboard.current.qKey.wasPressedThisFrame && uiOn != true)
         {
             Debug.Log(uiOn);
             uiOn = true;
@@ -62,7 +62,8 @@ public class Movement : MonoBehaviour
 
             resourceScript.openInventory();
         }
-        else if (Keyboard.current.jKey.wasPressedThisFrame)
+        //if r is pressed then open crafting, lock all movement
+        else if (Keyboard.current.rKey.wasPressedThisFrame && uiOn != true)
         {
             uiOn = true;
             //reference the crafting menu

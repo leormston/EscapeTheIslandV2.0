@@ -31,11 +31,13 @@ public class Crafting : MonoBehaviour
         crafting.SetActive(false);
 
         //create the mission item list
-        CraftableItem hull = new CraftableItem("Hull", 3, 0, 0);
+        CraftableItem hull = new CraftableItem("Hull", 20, 0, 0);
         missionList.Add(hull);
-        CraftableItem mast = new CraftableItem("Mast", 5, 5, 20);
+        CraftableItem mast = new CraftableItem("Mast", 40, 5, 5);
         missionList.Add(mast);
-        CraftableItem engine = new CraftableItem("Engine", 5, 5, 20);
+        CraftableItem stele = new CraftableItem("Stele", 0, 40, 0);
+        missionList.Add(stele);
+        CraftableItem engine = new CraftableItem("Engine", 5, 5, 30);
         missionList.Add(engine);
         Debug.Log("the length is " + missionList.Count);
         close.onClick.AddListener(closeCrafting);

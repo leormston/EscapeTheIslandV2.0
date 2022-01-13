@@ -20,9 +20,9 @@ MonoBehaviour:
   - 'See if there are any materials on the beach. '
   - Try gathering some woods and stones.
   - They will be useful for survival.
-  - (Press 'I' to open the inventory)
-  - (Press 'j' to open the crafting menu)
-  - (Press 'M' to open the mini map)
+  - (Press 'Q' to open the inventory)
+  - (Press 'R' to open the crafting menu)
+  - (Press 'M' to toggle the mini map)
   - (The current mission is showed on the top right corner)
   potrait:
   - Fairy

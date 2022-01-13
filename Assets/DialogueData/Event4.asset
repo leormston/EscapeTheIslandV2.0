@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
   - I can now use the axe to chop down trees!
-  - (press 'e' to chop down trees)
+  - (press 'Mouse Left Button' to chop down trees)
   potrait:
   - Traveler
   - Traveler
