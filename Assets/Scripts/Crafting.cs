@@ -16,7 +16,7 @@ public class Crafting : MonoBehaviour
     public Button craftMission;
     public List<CraftableItem> missionList;
     public int current = 0;
-
+    public int scrap = 0;
     //amount for mission
     //private int[] missionAmount = { };
 
@@ -118,7 +118,7 @@ public class Crafting : MonoBehaviour
     {
         GameObject resource = GameObject.Find("GameManager");
         ResourceCounter resourceScript = resource.GetComponent<ResourceCounter>();
-        if (1 <= resourceScript.wood && 3 <= resourceScript.stone)
+        if (1 <= resourceScript.wood && 3 <= resourceScript.stone && resourceScript.stoneAxe < 1)
         {
             resourceScript.stoneAxe += 1;
             resourceScript.stone -= 3;
@@ -131,7 +131,7 @@ public class Crafting : MonoBehaviour
     {
         GameObject resource = GameObject.Find("GameManager");
         ResourceCounter resourceScript = resource.GetComponent<ResourceCounter>();
-        if (1 <= resourceScript.wood && 3 <= resourceScript.scrap)
+        if (1 <= resourceScript.wood && 3 <= resourceScript.scrap && resourceScript.slingShot < 1)
         {
             resourceScript.slingShot += 1;
             resourceScript.scrap -= 3;

@@ -9,11 +9,15 @@ public class EnemyAI : MonoBehaviour
     public NavMeshAgent agent;
 
     public Transform player;
-
+    public GameObject scrap;
     public LayerMask whatIsGround, whatIsPlayer;
     public GameObject ground;
     public float health;
     public Animator animator;
+
+    //sounds
+    public AudioSource hurtAudio;
+    public AudioSource deathAudio;
 
     //Patroling
     public Vector3 walkPoint;
@@ -28,14 +32,16 @@ public class EnemyAI : MonoBehaviour
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
-
+    private bool dead = false;
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         walkPointSet = false;
         animator = GetComponentInChildren<Animator>();
-
+        var aSources = GetComponents<AudioSource>();
+        deathAudio = aSources[1];
+        hurtAudio = aSources[2]; 
         
     }
 
@@ -95,7 +101,8 @@ public class EnemyAI : MonoBehaviour
         if (!alreadyAttacked)
         {
             ///Attack code here
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            Vector3 pos = new Vector3(transform.position.x , transform.position.y, transform.position.z);
+            Rigidbody rb = Instantiate(projectile, pos, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 16f, ForceMode.Impulse);
             rb.AddForce(transform.up * 2f, ForceMode.Impulse);
             ///End of attack code
@@ -113,12 +120,41 @@ public class EnemyAI : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-
-        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+        if (dead == false)
+        {
+            hurtAudio.Play();
+            if (health <= 0) 
+            {
+                StartCoroutine(DestroyEnemy());
+            }
+        }
+        
+        
     }
-    private void DestroyEnemy()
+    IEnumerator DestroyEnemy()
     {
-        Destroy(gameObject);
+        
+        if(dead == false)
+        {
+            dead = true;
+            deathAudio.Play();
+            yield return new WaitForSeconds(2.4f);
+            
+            if (gameObject.activeSelf == true) 
+            {
+                
+                // Collider m_Collider = GetComponent<Collider>();
+                // m_Collider.enabled = !m_Collider.enabled;
+                Vector3 pos = new Vector3(gameObject.transform.position.x + 0.5f, gameObject.transform.position.y + 1.5f, gameObject.transform.position.z);
+                Vector3 posOne = new Vector3(gameObject.transform.position.x + -0.5f, gameObject.transform.position.y + +1.0f, gameObject.transform.position.z + 1.45f); 
+                GameObject.Instantiate(scrap, pos, gameObject.transform.rotation);
+                GameObject.Instantiate(scrap, posOne, gameObject.transform.rotation);
+                gameObject.SetActive(false);
+            }
+            
+        }
+        
+        
     }
 
     public void OnTriggerEnter(Collider col)

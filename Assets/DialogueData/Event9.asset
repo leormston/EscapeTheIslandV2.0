@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Event9
   m_EditorClassIdentifier: 
   dialogue:
-  - I need to repaire the mast.
+  - I need to repair the mast.
   - This will require a lot of wood.
   - There is a forest on the other side of the island.
   - Be careful, there are lots of zombies there.

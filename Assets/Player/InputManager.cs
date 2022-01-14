@@ -50,9 +50,10 @@ public class InputManager : MonoBehaviour
         if (equipScript.slingerOn   == true) {
             if (Mouse.current.rightButton.wasPressedThisFrame)
             {
-                Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-                rb.AddForce(transform.forward * 16f, ForceMode.Impulse);
-                rb.AddForce(transform.up * 2f, ForceMode.Impulse);
+                Vector3 pos = new Vector3(transform.position.x + 0.5f, transform.position.y + 0.5f, transform.position.z);
+                Rigidbody rb = Instantiate(projectile, pos, Quaternion.identity).GetComponent<Rigidbody>();
+                rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+                rb.AddForce(transform.up * 2.2f, ForceMode.Impulse);
             }
          }
     }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
   - Great, now I should repair the engine
-  - (Scraps can be found near the ship)
+  - (Scrap can be found near the ship)
   - You are close to escape the island!
   potrait:
   - Traveler

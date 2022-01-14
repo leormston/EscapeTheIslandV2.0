@@ -34,7 +34,7 @@ public class checkInSight : MonoBehaviour
         //call resource
         GameObject gameManager = GameObject.Find("GameManager");
         ResourceCounter resourceScript = gameManager.GetComponent<ResourceCounter>();
-
+        Crafting crafting = gameManager.GetComponent<Crafting>();
         // call hunger
         //GameObject hungerDisplay = GameObject.Find("HungerDisplay");
         hungerReduce hungerScript = gameManager.GetComponent<hungerReduce>();
@@ -71,19 +71,20 @@ public class checkInSight : MonoBehaviour
                     {
                         Destroy(hit.transform.gameObject);
                         woodAudio.Play();
-                        resourceScript.wood += 1;
+                        resourceScript.wood += 5;
                     }
                     else if (hit.collider.name.Contains("stone"))
                     {
                         Destroy(hit.transform.gameObject);
                         stoneAudio.Play();
-                        resourceScript.stone += 1;
+                        resourceScript.stone += 3;
                     }
                     else if (hit.collider.name.Contains("scrap"))
                     {
                         Destroy(hit.transform.gameObject);
                         scrapAudio.Play();
-                        resourceScript.scrap += 1;
+                        resourceScript.scrap += 3;
+                        crafting.scrap = resourceScript.scrap;
                     }
                     else if (hit.collider.name.Contains("Ship"))
                     {
