@@ -8,7 +8,7 @@ Mouse - This is to look around </br>
 Spacebar - This is to jump </br>
 Left Click - Chop down trees with axe </br>
 Right Click - Fire projectiles at enemies </br>
-E - Collect / Consume resources </br>w 
+E - Collect / Consume resources </br>
 Q - open up the inventory </br>
 R - Open up the crafting menu </br>
 Esc - Allow cursor to leave the game window </br>
