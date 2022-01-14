@@ -1,4 +1,4 @@
-# EscapeTheIslandGP
+# Escape The Island
 
 Here is our 3D island survival and crafting game. You fight against waves of enemies and find resources to repair your boat.
 </br>
